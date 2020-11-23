@@ -1,14 +1,33 @@
 .app {
-  background: #209cee;
-  height: 100vh;
-  padding: 30px;
+  /* background: #209cee; */
+  /* height: 100vh;
+  padding: 30px; */
 }
 
 .todo-list {
-  background: #e8e8e8;
+  /* background: #e8e8e8;
   border-radius: 4px;
-  max-width: 400px;
+  max-width: 600px;
   padding: 5px;
+  margin: auto;
+  margin-top: 50px; */
+}
+
+.save-btn {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.btn-wrapper {
+  display: flex;
+}
+
+input.input {
+  font-size: 23px;
+  background: lightgrey;
+  padding: 4px;
+  width: 250px;
+  min-height: 25px;
 }
 
 .todo {
@@ -17,8 +36,12 @@
   border-radius: 3px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   display: flex;
-  font-size: 12px;
+  font-size: 25px;
   justify-content: space-between;
   margin-bottom: 6px;
   padding: 3px 10px;
+}
+
+.check-mark {
+  cursor:url('./images/check-mark.png'), auto;
 }

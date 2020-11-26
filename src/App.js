@@ -158,10 +158,23 @@ function App() {
     seTodos(newTodos);
   }
 
-  const deleteTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    seTodos(newTodos);
+  const deleteTodo = (index, columnId) => {
+    let itemList = [...columns[columnId].items];
+    for (var i = 0; i < itemList.length; i++) {
+      if(itemList[i].id === index){
+        itemList.splice(i, 1);
+      }
+    }
+    setColumns(prev => {
+      return {
+        ...prev,
+        [columnId]: {
+          name: columns[columnId].name,
+          items: itemList
+        }
+      }
+    })
+    console.log(columnId);
   }
 
   const saveTodos = () => {
@@ -216,6 +229,8 @@ function App() {
                                       {...provided.draggableProps}
                                       {...provided.dragHandleProps}
                                       style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
                                         userSelect: "none",
                                         padding: 16,
                                         margin: "0 0 8px 0",
@@ -228,6 +243,9 @@ function App() {
                                       }}
                                     >
                                       {item.content}
+                                      <div>
+                                        <button onClick={() => deleteTodo(item.id, columnId)}>x</button>
+                                      </div>
                                     </div>
                                   );
                                 }}

@@ -114,36 +114,49 @@ function App() {
 
 
   const columnsFromBackend = {
-    [uuid()]: {
+    "requested": {
       name: "Requested",
       items: itemsFromBackend
     },
-    [uuid()]: {
+    "to-do": {
       name: "To do",
       items: []
     },
-    [uuid()]: {
+    "in-progress": {
       name: "In Progress",
       items: []
     },
-    [uuid()]: {
+    "done": {
       name: "Done",
       items: []
     }
   };
 
-  useEffect(() => {
-    let todoTextList = todos.map(todo => todo.text);
-    setTodoTexts(todoTextList);
-  }, [todos]);
+
+
   const [columns, setColumns] = useState(columnsFromBackend);
   const [todoTexts, setTodoTexts] = useState([]);
 
+  useEffect(() => {
+    console.log(columns);
+  }, [columns]);
+
   const addTodo = text => {
-    // const newTodos = [...todos, {text}];
-    // seTodos(newTodos);
-    const newTodosFromBackend = [...itemsFromBackend, {text}];
-    setItemsFromBackend(newTodosFromBackend);
+    setColumns(prev => {
+      return {
+        ...prev,
+        requested: {
+          name: "Requested",
+          items: [
+            ...prev.requested.items,
+            {
+              id: uuid(),
+              content: text
+            }
+          ]
+        }
+      }
+    })
   }
 
   const toggleTodo = index => {
